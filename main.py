@@ -5,7 +5,8 @@ import nasgor
 parser = argparse.ArgumentParser(
   prog = "nasgor",
   description = "Pemesanan Nasi Goreng Hekel",
-  usage="Cara penggunaan: nasgor [ARGS][OPTION]",
+  usage="Cara penggunaan: nasgor [ARGS][OPTIONS]",
+  epilog= """contoh: python main.py nasgor diet --pedas 15 --topping sosis 'telur ceplok' --jumlah 2"""
   )
 
 parser.add_argument(
@@ -26,9 +27,9 @@ nasgor_parser.add_argument(
 
 nasgor_parser.add_argument(
   '--topping', '-t', 
-  metavar = "toping", action='store',  
-  nargs = '+', 
   type = str,
+  action='store',  
+  nargs = '+', 
   choices = nasgor.toppings,
   help =" Pesan nasi goreng dengan toping tertentu")
 
@@ -36,6 +37,7 @@ nasgor_parser.add_argument(
 nasgor_parser.add_argument(
   '--pedas',
   type = int,
+  action='store',
   choices = nasgor.pedas,
   default = 10,
   help = "Menentukan tingkat pedas. Default 10."
@@ -43,16 +45,18 @@ nasgor_parser.add_argument(
 
 nasgor_parser.add_argument(
   '-j','--jumlah',
-  metavar = "jumlah",
   type = int,
+  action='store',
+  default = 1,
   help = "Menentukan jumlah pesanan nasi goreng"
 )
 
 args = parser.parse_args()
-print("ARGS:", args)
+print(args)
 
 if args.list_menu:
   print(f"""
+  
   LIST PORSI (wajib pilih satu)
   - diet
   - sedang
@@ -65,7 +69,7 @@ if args.list_menu:
   - 15
   - 20
 
-  JENIS TOPPING
+  JENIS TOPPING (opsional, maksimal 2)
   - sosis
   - ati ampela
   - telur ceplok
@@ -77,5 +81,12 @@ if args.list_menu:
   SELAMAT BELANJA GEEKS!
   """)
 else:
-  pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} dengan toping {', '.join(args.topping)}"
+  if args.topping != None and len(args.topping) > 2:
+    parser.error("Toping maksimal 2 aja yaa, lagi mahal nih bahan makanan.")
+
+  pesanan = ""
+  if args.topping != None:
+    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} dengan toping {', '.join(args.topping)}"
+  else:
+    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} tanpa toping"
   print(pesanan)
