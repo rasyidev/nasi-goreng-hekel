@@ -59,9 +59,11 @@ if args.list_menu:
   
   LIST PORSI (wajib pilih satu)
   - diet
+  - portugal
   - sedang
   - besar
   - hajatan
+  - orang belom makan 7 hari
 
   LIST LEVEL PEDAS (default 10)
   - 5
@@ -77,6 +79,7 @@ if args.list_menu:
   - teri
   - bakso
   - seafood
+  - basreng
 
   SELAMAT BELANJA GEEKS!
   """)

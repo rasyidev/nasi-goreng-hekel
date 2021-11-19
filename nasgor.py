@@ -6,13 +6,16 @@ toppings = {
   'teri': 3000,
   'bakso': 3000,
   'seafood': 4000
+  'basreng': 3500
 }
 
 porsi = [
+  'portugal',
   'diet',
   'sedang',
   'besar',
-  'hajatan'
+  'hajatan',
+  'orang belom makan 7 hari'
 ]
 
 pedas = [5, 10, 15, 20]
