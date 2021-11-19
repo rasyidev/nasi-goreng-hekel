@@ -5,14 +5,17 @@ toppings = {
   'telur dadar': 2000,
   'teri': 3000,
   'bakso': 3000,
-  'seafood': 4000
+  'seafood': 4000,
+  'wagyu': 5000,
 }
 
 porsi = [
   'diet',
   'sedang',
   'besar',
-  'hajatan'
+  'hajatan',
+  'kuli',
+  'gila',
 ]
 
-pedas = [5, 10, 15, 20]
+pedas = [5, 10, 15, 20,50]
