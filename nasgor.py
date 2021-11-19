@@ -1,8 +1,8 @@
 toppings = {
   'sosis': 1000,
-  'ati ampela': 2000, #hapus underscore
-  'telur ceplok': 2000,
-  'telur dadar': 2000,
+  'ati_ampela': 2000, #hapus underscore
+  'telur_ceplok': 2000,
+  'telur_dadar': 2000,
   'teri': 3000,
   'bakso': 3000,
   'seafood': 4000

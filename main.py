@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(
   prog = "nasgor",
   description = "Pemesanan Nasi Goreng Hekel",
   usage="Cara penggunaan: nasgor [ARGS][OPTIONS]",
-  epilog= """contoh: python main.py nasgor diet --pedas 15 --topping sosis 'telur ceplok' --jumlah 2"""
+  epilog= """contoh: python main.py nasgor diet --pedas 15 --topping sosis telur_ceplok --jumlah 2, \nNote: jika ada topping yang terdiri lebih dari satu kata, ganti spasi dengan garis bawah. \nSilahkan periksa menu list (--list-menu). Terima kasih..."""
   )
 
 parser.add_argument(
@@ -38,7 +38,7 @@ nasgor_parser.add_argument(
   '--pedas',
   type = int,
   action='store',
-  choices = nasgor.pedas,
+  # choices = nasgor.pedas,
   default = 10,
   help = "Menentukan tingkat pedas. Default 10."
 )
@@ -58,25 +58,21 @@ if args.list_menu:
   print(f"""
   
   LIST PORSI (wajib pilih satu)
-  - diet
-  - sedang
-  - besar
-  - hajatan
+  - diet : 5K
+  - sedang : 10K
+  - besar : 20K
+  - hajatan : 30K
 
-  LIST LEVEL PEDAS (default 10)
-  - 5
-  - 10
-  - 15
-  - 20
+  LEVEL PEDAS (0 - 20, default 10)
 
   JENIS TOPPING (opsional, maksimal 2)
-  - sosis
-  - ati ampela
-  - telur ceplok
-  - telur dadar
-  - teri
-  - bakso
-  - seafood
+  - sosis : 1K
+  - ati ampela : 2K
+  - telur ceplok : 2K
+  - telur dadar : 2K
+  - teri : 3K
+  - bakso : 3K
+  - seafood : 4K
 
   SELAMAT BELANJA GEEKS!
   """)
@@ -99,7 +95,18 @@ else:
   if args.topping != None:
     for i in args.topping:
       bayar += nasgor.toppings[i]
-    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} dengan toping {', '.join(args.topping)}, \nHarga yang harus kamu bayar Rp.{bayar}"
+    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} dengan toping {', '.join(args.topping)}, \nHarga yang harus kamu bayar Rp.{bayar} \n"
   else:
-    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} tanpa toping, \nHarga yang harus kamu bayar Rp.{bayar}"
+    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} tanpa toping, \nHarga yang harus kamu bayar Rp.{bayar} \n"
   print(pesanan)
+
+  user_input = input("Tampilkan kwitansi? ")
+  if user_input.lower() in ["y", "ya", "yes", "iya"]:
+    print("DAFTAR PEMBELIAN: ")
+    print("Nasi Goreng " + args.porsi + " : Rp." + str(nasgor.porsi[args.porsi]) + " kali " + str(args.jumlah))
+    if args.topping != None:
+      print("Topping, ")
+      for i in args.topping:
+        print(i + " : Rp." + str(nasgor.toppings[i]))
+    print("Terima kasih telah memesan. Have a nice day :)")
+    
