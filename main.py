@@ -52,7 +52,7 @@ nasgor_parser.add_argument(
 )
 
 args = parser.parse_args()
-print(args)
+# print(args)
 
 if args.list_menu:
   print(f"""
@@ -81,12 +81,25 @@ if args.list_menu:
   SELAMAT BELANJA GEEKS!
   """)
 else:
+  ###################################################
+  # Tambahan peringatan pedas berlebih
+  if args.pedas > 20:
+    parser.error("Sayangi Lambung, sayangku. ') ")
+
+  ###################################################
+
   if args.topping != None and len(args.topping) > 2:
     parser.error("Toping maksimal 2 aja yaa, lagi mahal nih bahan makanan.")
 
+  bayar = 0
   pesanan = ""
+
+  bayar = args.jumlah * nasgor.porsi[args.porsi]
+
   if args.topping != None:
-    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} dengan toping {', '.join(args.topping)}"
+    for i in args.topping:
+      bayar += nasgor.toppings[i]
+    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} dengan toping {', '.join(args.topping)}, \nHarga yang harus kamu bayar Rp.{bayar}"
   else:
-    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} tanpa toping"
+    pesanan = f"Kamu akan memesan {args.jumlah} nasi goreng hekel porsi {args.porsi} tanpa toping, \nHarga yang harus kamu bayar Rp.{bayar}"
   print(pesanan)
