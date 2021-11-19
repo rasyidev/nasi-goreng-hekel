@@ -61,7 +61,7 @@ if args.list_menu:
   - diet
   - sedang
   - besar
-  - hajatan
+  - catering
 
   LIST LEVEL PEDAS (default 10)
   - 5
@@ -77,6 +77,9 @@ if args.list_menu:
   - teri
   - bakso
   - seafood
+  - keju mozarella
+  - karage
+  - sayuran
 
   SELAMAT BELANJA GEEKS!
   """)
