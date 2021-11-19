@@ -13,6 +13,7 @@ porsi = [
   'sedang',
   'besar',
   'hajatan'
+  'keluarga'
 ]
 
 pedas = [5, 10, 15, 20]
